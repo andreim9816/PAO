@@ -18,51 +18,95 @@ public class DepartmentService
         return instance;
     }
 
+    public void addDepartment(Department d, int idHospital) throws IllegalArgumentException
+    {
+        AuditService.getInstance().write("Add department");
+
+        if(HospitalService.getInstance().hospitalExists(idHospital)) // checks if this hospital exists
+        {
+            d.setIdHospital(idHospital);
+            departmentRepository.add(d);
+            DepartmentCsvService.getInstance().writeFile(d);
+        }
+        else throw new IllegalArgumentException("Hospital does not exist!");
+    }
+
+    public boolean departmentExists(int idHospital, String nameDepartment)
+    {
+        Department department = getDepartment(idHospital, nameDepartment);
+        if(department == null)
+            return false;
+        return true;
+    }
+
+    public DepartmentRepository getDepartmentRepository()
+    {
+        return departmentRepository;
+    }
+
     public ArrayList<Department> getAllDepartment()
     {
+        AuditService.getInstance().write("Get all departments");
         return departmentRepository.getDepartmentAll();
     }
 
-    public Department getDepartmentReference(Department D)
+    public Department getDepartment(int idHospital, String nameDepartment)
     {
-        return departmentRepository.getDepartmentReference(D);
+        AuditService.getInstance().write("Get department");
+        Department dep = departmentRepository.getDepartmentReference(idHospital, nameDepartment);
+        if(dep == null)
+            throw new IllegalArgumentException("No department found!");
+        else return dep;
     }
 
-    public boolean personInDepartment(Department D , int Id)
+    public void changeNumberOfBeds(int noOfBeds, int idHospital, String nameDepartment)
     {
-        /**
-         * Function that checks if a person (given by an ID) is part of a Department
-         */
+        AuditService.getInstance().write("Change number of beds");
+        Department d = getDepartment(idHospital, nameDepartment);
+        if(d == null)
+            throw new IllegalArgumentException("This department does not exist!");
 
-            for(Person p : D.getArrayPatient())
-                if(p.getID() == Id)
-                    return true;
-
-            for(Person p : D.getArrayDoctor())
-                if(p.getID() == Id)
-                    return true;
-            return false;
+        d.setNoOfBeds(noOfBeds);
+        DepartmentCsvService.getInstance().updateFile();
     }
 
-    public Department getDepartment(int ID)
+    public void changeNameDepartment(String newName, int idHospital, String nameDepartment)
     {
-        /**
-         * Function that returns the department a person is part of
-         */
+        AuditService.getInstance().write("Change name of department");
+        Department d = getDepartment(idHospital, nameDepartment);
+        if(d == null)
+            throw new IllegalArgumentException("This department does not exist!");
 
-        for(Department d : departmentRepository.getDepartmentAll())
+        d.setNameDepartment(newName);
+        DepartmentCsvService.getInstance().updateFile();
+    }
+
+    public ArrayList<Person> getAllPersonsFromDepartment(int idHospital, String nameDepartment)
+    {
+        AuditService.getInstance().write("Get all persons from department");
+        ArrayList<Person> persons = PersonService.getInstance().getAllPerson();
+        ArrayList<Person> result = new ArrayList<>();
+
+        for(Person person : persons)
+            if(person.getIdHospital() == idHospital && person.getNameDepartment().equals(nameDepartment))
+                result.add(person);
+        return result;
+    }
+
+    public void remove(int idHospital, String departmentName)
+    {
+        AuditService.getInstance().write("Remove a department");
+        Department d = instance.getDepartment(idHospital, departmentName);
+        if(d == null)
+           throw new IllegalArgumentException("Department does not exist!");
+        else
         {
-            if(personInDepartment(d , ID))
-                return d;
+            ArrayList<Person> personsInDepartment = instance.getAllPersonsFromDepartment(idHospital, departmentName);
+            departmentRepository.remove(d);
+            for(Person person : personsInDepartment)
+                PersonService.getInstance().remove(person.getCNP());
+
+            DepartmentCsvService.getInstance().updateFile();
         }
-
-        System.out.println("Person not found in any department");
-        return null;
     }
-
-    public void remove(Department d)
-    {
-        departmentRepository.remove(d);
-    }
-
 }

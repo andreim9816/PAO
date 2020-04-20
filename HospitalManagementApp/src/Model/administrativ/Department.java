@@ -1,54 +1,38 @@
 package Model.administrativ;
-
-import Model.personal.Doctor;
-import Model.personal.Patient;
-import Model.personal.Person;
-
-import java.util.Objects;
-import java.util.Vector;
-
 public class Department
 {
-    private String name;
+    private String nameDepartment;
     private int noOfBeds;
-    private Vector<Person>arrayPatient;
-    private Vector<Person>arrayDoctor;
+    private int idHospital;
 
     public Department()
     {
-        name = "";
+        nameDepartment = "";
         noOfBeds = 0;
-        arrayDoctor = new Vector();
-        arrayPatient = new Vector();
+        idHospital = 0;
     }
 
     public Department(Department s)
     {
-        name = new String(s.name);
+        nameDepartment = new String(s.nameDepartment);
         noOfBeds = s.noOfBeds;
+        idHospital = s.idHospital;
     }
 
-    public Department(String name, int noOfBeds)
+    public Department(String nameDepartment, int noOfBeds)
     {
-        this.name = name;
+        this.nameDepartment = new String(nameDepartment);
         this.noOfBeds = noOfBeds;
-        arrayDoctor = new Vector();
-        arrayPatient = new Vector();
     }
 
-    public Vector<Person> getArrayPatient()
+    public String getNameDepartment()
     {
-        return arrayPatient;
+        return nameDepartment;
     }
 
-    public Vector<Person> getArrayDoctor()
+    public void setNameDepartment(String nameDepartment)
     {
-        return arrayDoctor;
-    }
-
-    public String getName()
-    {
-        return name;
+        this.nameDepartment = new String(nameDepartment);
     }
 
     public int getNoOfBeds()
@@ -56,25 +40,29 @@ public class Department
         return noOfBeds;
     }
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
     public void setNoOfBeds(int noOfBeds)
     {
         this.noOfBeds = noOfBeds;
     }
 
+    public int getIdHospital()
+    {
+        return idHospital;
+    }
+
+    public void setIdHospital(int idHospital)
+    {
+        this.idHospital = idHospital;
+    }
+
     @Override
     public String toString()
     {
-        return "Department { " +
-                "name = '" + name + '\'' +
-                ", noOfBeds = " + noOfBeds +
-                ", arrayPatient = " + arrayPatient +
-                ", arrayDoctor = " + arrayDoctor +
-                " } ";
+        return "Department{" +
+                "nameDepartment='" + nameDepartment + '\'' +
+                ", noOfBeds=" + noOfBeds +
+                ", idHospital=" + idHospital +
+                '}';
     }
 
     @Override
@@ -82,9 +70,8 @@ public class Department
     {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Department that = (Department) o;
-        return getNoOfBeds() == that.getNoOfBeds() &&
-                Objects.equals(getName(), that.getName());
+        Department d = (Department) o;
+        return (d.getIdHospital() == getIdHospital() && d.getNameDepartment().equals(getNameDepartment()));
     }
 
 }

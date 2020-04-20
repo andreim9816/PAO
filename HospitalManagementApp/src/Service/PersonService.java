@@ -1,16 +1,19 @@
 package Service;
+import ComparatorMedication.ComparatorMedication;
 import Main.Main;
-import Model.administrativ.Department;
 import Model.administrativ.Hospital;
 import Model.personal.Doctor;
+import Model.personal.Nurse;
 import Model.personal.Patient;
 import Model.personal.Person;
 import Model.tratament.Medication;
 import Model.tratament.Prescription;
 import Repository.PersonRepository;
 
+
 import java.util.ArrayList;
-import java.util.Vector;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class PersonService
 {
@@ -24,164 +27,243 @@ public class PersonService
         return instance;
     }
 
-    public void add(Person p)
+    public PersonRepository getPersonRepository()
     {
-        personRepository.add(p);
+        return personRepository;
     }
 
-    public Person getPersonById(int ID)
+    public void add(Person p, int idHospital, String nameDepartment) throws IllegalArgumentException
     {
-        return personRepository.getPersonById(ID);
+        AuditService.getInstance().write("Add person");
+        if(p instanceof Patient)
+        {
+           int numberOfBeds = Main.departmentService.getDepartment(idHospital, nameDepartment).getNoOfBeds();
+           int numberOfPatientsInDepartment = instance.getAllPatientsFromDepartment(idHospital, nameDepartment).size();
+
+           if(numberOfBeds <= numberOfPatientsInDepartment)
+               throw new IllegalArgumentException("Maximum number of patients reached! Can't add another Patient");
+        }
+
+        if(HospitalService.getInstance().hospitalExists(idHospital))
+        {
+            if(DepartmentService.getInstance().departmentExists(idHospital, nameDepartment))
+            {
+                p.setIdHospital(idHospital);
+                p.setNameDepartment(nameDepartment);
+                personRepository.add(p);
+                PersonCsvService.getInstance().writeFile(p);
+            }
+            else throw new IllegalArgumentException("Department does not exist!");
+        }
+        else throw new IllegalArgumentException("Hospital does not exist!");
+    }
+
+    public Person getPersonByCNP(String CNP) throws IllegalArgumentException
+    {
+        AuditService.getInstance().write("Get person by CNP");
+        Person p = personRepository.getPersonByCNP(CNP);
+        if(p == null)
+            throw new IllegalArgumentException("No Person found!");
+        else return p;
+    }
+
+    public boolean isDoctor(String CNP)
+    {
+        Person p = getPersonByCNP(CNP);
+        if(p instanceof Doctor)
+            return true;
+        return false;
+    }
+
+    public boolean isPatient(String CNP)
+    {
+        Person p = getPersonByCNP(CNP);
+        if(p instanceof Patient)
+            return true;
+        return  false;
+    }
+
+    public void printPerson(String CNP)
+    {
+        Person p = personRepository.getPersonByCNP(CNP);
+        if(p == null)
+            throw new IllegalArgumentException("No Person found!");
+        else System.out.println(p);
     }
 
     public ArrayList<Person> getAllPerson()
     {
+        AuditService.getInstance().write("Get all persons");
         return personRepository.getAllPerson();
     }
 
-    public void changeFirstName(Person P , String name)
+    public ArrayList<Person> getAllPatients()
     {
-        Person getRef = personRepository.getPersonReference(P);
-        getRef.setFirstName(name);
+        AuditService.getInstance().write("Get all patients");
+        return personRepository.getAllPatients();
     }
 
-    public void changeLastName(Person P , String name)
+    public ArrayList<Person> getAllDoctors()
     {
-        Person getRef = personRepository.getPersonReference(P);
-        getRef.setLastName(name);
+        AuditService.getInstance().write("Get all doctors");
+        return personRepository.getAllDoctors();
     }
 
-    public void changeDoctorGrade(Person P , String grade)
+    public ArrayList<Person> getAllNurses()
     {
-        /**
-         * Function that changes a doctor's grade
-         */
+        AuditService.getInstance().write("Get all nurses");
+        return personRepository.getAllNurses();
+    }
 
-        if(P instanceof Doctor)
+    public void changeFirstName(String newName, String CNP) throws IllegalArgumentException
+    {
+        AuditService.getInstance().write("Change first name");
+        Person p = getPersonByCNP(CNP);
+        if(p == null)
+            throw new IllegalArgumentException("No person found!");
+        p.setFirstName(newName);
+        PersonCsvService.getInstance().updateFile();
+    }
+
+    public void changeLastName(String newName, String CNP) throws IllegalArgumentException
+    {
+        AuditService.getInstance().write("Change last name");
+        Person p = getPersonByCNP(CNP);
+        if(p == null)
+            throw new IllegalArgumentException("No person found!");
+        p.setLastName(newName);
+        PersonCsvService.getInstance().updateFile();
+    }
+
+    public void changeDoctorGrade(String grade, String CNP) throws IllegalArgumentException
+    {
+        AuditService.getInstance().write("Change doctor grade");
+        Person p = getPersonByCNP(CNP);
+        if(p == null)
+            throw new IllegalArgumentException("No person found!");
+
+        if(p instanceof Doctor)
         {
-            ((Doctor) P).setGrade(grade);
+            ((Doctor) p).setGrade(grade);
         }
-        else System.out.println("Person is not a doctor");
+        else throw new IllegalArgumentException("Person is not a doctor!");
+        PersonCsvService.getInstance().updateFile();
     }
 
-    public void remove(int id)
+    public void changePatientInsurance(Boolean insured, String CNP) throws IllegalArgumentException
     {
-        Department department = Main.departmentService.getDepartment(id); // the department where the person is
+        AuditService.getInstance().write("Change patient insurance status");
+        Person p = getPersonByCNP(CNP);
+        if(p == null)
+            throw new IllegalArgumentException("No person found!");
+        if(p instanceof Patient)
+            ((Patient) p).setInsured(insured);
+        else throw new IllegalArgumentException("Person not a patient!");
+        PersonCsvService.getInstance().updateFile();
+    }
 
-        for(Person p : department.getArrayPatient())
-            if(p.getID() == id)
+    public ArrayList<Person> getAllDoctorsFromDepartment(int idHospital, String nameDepartment)
+    {
+        AuditService.getInstance().write("Get all doctors from department");
+        ArrayList<Person> doctors = getAllDoctors();
+        ArrayList<Person> result = new ArrayList<>();
+
+        for(Person p : doctors)
+            if(p.getNameDepartment().equals(nameDepartment) && p.getIdHospital() == idHospital)
+                result.add(p);
+        return result;
+    }
+
+    public ArrayList<Person> getAllPatientsFromDepartment(int idHospital, String nameDepartment)
+    {
+        AuditService.getInstance().write("Get all patients from department");
+        ArrayList<Person> patients = getAllPatients();
+        ArrayList<Person> result = new ArrayList<>();
+
+        for(Person p : patients)
+            if(p.getNameDepartment().equals(nameDepartment) && p.getIdHospital() == idHospital)
+                result.add(p);
+        return result;
+    }
+
+    public ArrayList<Person> getAllPersonsFromHospital(int idHospital)
+    {
+        AuditService.getInstance().write("Get all persons from hospital");
+        ArrayList<Person> persons = getAllPerson();
+        ArrayList<Person> result = new ArrayList<>();
+
+        for(Person p : persons)
+            if(p.getIdHospital() == idHospital)
+                result.add(p);
+        return result;
+    }
+
+    public ArrayList<Person> getAllInsuredPatientsInDepartment(int idHospital, String nameDepartment)
+    {
+        AuditService.getInstance().write("Get all insured patients from department");
+        ArrayList<Person> patients = getAllPatients();
+        ArrayList<Person> result = new ArrayList<>();
+
+        for(Person p : patients)
+            if(p.getNameDepartment().equals(nameDepartment) && p.getIdHospital() == idHospital)
+                if(p instanceof Patient)
+                    if(((Patient) p).getInsured() == true)
+                       result.add(p);
+        return result;
+    }
+
+    public Set<Medication> getPatientMedications(Person patient)
+    {
+        AuditService.getInstance().write("Get all patients from medications");
+        if(patient instanceof Patient)
+        {
+            ArrayList<Prescription> prescriptions = PersonService.getInstance().getPatientPrescriptions(patient);
+            Set<Medication> result = new TreeSet<>(new ComparatorMedication());
+
+            for (Prescription prescription : prescriptions)
                 {
-                    department.getArrayPatient().remove(p);
-                    personRepository.remove(p);
-                    break;
+                    Set<Medication> medications = PrescriptionService.getInstance().getAllMedications(prescription);
+                    for (Medication m : medications)
+                        result.add(m);
                 }
+            return result;
+        }
+        else throw new IllegalArgumentException("Person not a patient!");
+    }
 
-        for(Person p : department.getArrayDoctor())
-            if(p.getID() == id) {
-                department.getArrayDoctor().remove(p);
+    public ArrayList<Prescription> getPatientPrescriptions(Person patient)
+    {
+        AuditService.getInstance().write("Get patient's prescriptions");
+        if(patient instanceof Patient)
+        {
+            ArrayList<Prescription> prescriptions = PrescriptionService.getInstance().getPrescriptionAll();
+            ArrayList<Prescription> result = new ArrayList<>();
+
+            for(Prescription p : prescriptions)
+                if(p.getCNPPatient().equals(patient.getCNP()))
+                    result.add(p);
+            return result;
+        }
+        else throw new IllegalArgumentException("Person not a patient!");
+    }
+
+    public void remove(String CNP)
+    {
+        AuditService.getInstance().write("Remove person");
+        Person p = getPersonByCNP(CNP);
+        if(p == null)
+           throw new IllegalArgumentException("Person with CNP: " + CNP + " does not exist!");
+        else
+            if(p instanceof Doctor || p instanceof Nurse)
                 personRepository.remove(p);
-                break;
+            else
+            {
+                ArrayList<Prescription> prescriptions = getPatientPrescriptions(p);
+                for(Prescription prescription : prescriptions)
+                    Main.prescriptionService.remove(prescription.getIdPrescription());
+
+                personRepository.remove(p);
             }
-    }
-
-    public void addPatientToDepartment(Department D , Person p)
-    {
-        /**
-         * Function that adds a specific Patient to a specific Departmeny
-         */
-
-        personRepository.add(p);
-
-    }
-
-    public void addPatientToDepartment(Hospital H , Department D , Person p)
-    {
-        /**
-         * Function that adds a specific Patient to a specific Department to a specific Hospital
-         */
-
-        personRepository.add(p);
-
-        Hospital hospitalRef = Main.hospitalService.getHospitalReference(H); // gets reference to the Hospital object in the database
-        Vector<Department> departments = hospitalRef.getArrayDepartment(); // gets the departments of the Hospital
-
-        int ok = 0;
-
-        for(Department d : departments)
-        {
-            if (d.equals(D))
-                if (p instanceof Patient)
-                {
-                    d.getArrayPatient().add(p);
-                    ok = 1;
-                    break;
-                }
-        }
-
-        if(ok == 0)
-            System.out.println("No patient has been added!");
-    }
-
-    public void addDoctorToDepartment(Hospital H , Department D , Person p)
-    {
-        /**
-         * Function that adds a specific Doctor to a specific Department to a specific Hospital
-         */
-
-        personRepository.add(p);
-
-        Hospital hospitalRef = Main.hospitalService.getHospitalReference(H); // gets reference to the Hospital object in the database
-        Vector<Department> departments = hospitalRef.getArrayDepartment(); // gets the departments of the Hospital
-
-        int ok = 0;
-        for(Department d : departments)
-        {
-            if (d.equals(D))
-                if (p instanceof Doctor)
-                {
-                    d.getArrayDoctor().add(p);
-                    ok = 1;
-                    break;
-                }
-        }
-
-        if(ok == 0)
-            System.out.println("No doctor has been added!");
-    }
-
-    public boolean isPrescribed(Person P , Medication M)
-    {
-        /**
-         * Function that checks if a Patient was prescribed a Medication
-         */
-
-        if(P instanceof  Patient)
-        {
-            Vector<Medication> arrayMedication =  ((Patient) P).getPrescription().getArrayMedication();
-            for(Medication m : arrayMedication)
-                if(m.equals(M))
-                    return true;
-            return false;
-        }
-        else System.out.println("Person is not a patient");
-        return false;
-    }
-
-    public void addPrescriptionToPatient(Person P , Prescription prescription)
-    {
-        /**
-         * Funcion that adds a Prescription to a Patient
-         */
-
-        Person persRef = personRepository.getPersonReference(P);
-        if(persRef instanceof Patient)
-        {
-            ((Patient) persRef).setPrescription(prescription);
-            prescription.setPatientFirstName(persRef.getFirstName());
-            prescription.setPatientLastName(persRef.getlastName());
-            Main.prescriptionService.getPrescriptionAll().add(prescription);
-        }
-        else System.out.println("No prescription added, person is not a patient");
-
+        PersonCsvService.getInstance().updateFile();
     }
 }

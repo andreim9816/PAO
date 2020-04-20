@@ -4,57 +4,68 @@ import java.util.Objects;
 
 public class Medication
 {
-    private String name;
-    private Dosage dosage;
+    private String nameMedication;
+    private int idPrescription;
+    private int quantity;
 
     public Medication()
     {
-        name = "";
-        dosage = new Dosage();
+        idPrescription = 0;
+        quantity = 0;
     }
 
-    public Medication(String name, Dosage dosage)
+    public Medication(String nameMedication, int quantity)
     {
-        this.name = name;
-        this.dosage = dosage;
+        this.nameMedication = new String(nameMedication);
+        this.quantity = quantity;
     }
 
-    public String getName()
+    public int getIdPrescription()
     {
-        return name;
+        return idPrescription;
     }
 
-    public Dosage getDosage()
+    public void setIdPrescription(int idPrescription)
     {
-        return dosage;
+        this.idPrescription = idPrescription;
     }
 
-    public void setName(String name)
+    public String getNameMedication()
     {
-        this.name = name;
+        return nameMedication;
     }
 
-    public void setdosage(Dosage dosage)
+    public void setNameMedication(String nameMedication)
     {
-        this.dosage = dosage;
+        this.nameMedication = nameMedication;
+    }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Medication that = (Medication) o;
-        return Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getDosage(), that.getDosage());
+        return idPrescription == that.idPrescription &&
+                getQuantity() == that.getQuantity() &&
+                Objects.equals(getNameMedication(), that.getNameMedication());
     }
 
     @Override
-    public String toString()
-    {
-        return "Medication { " +
-                " name = '" + name + '\'' +
-                ", dosage = " + dosage +
-                " } ";
+    public String toString() {
+        return "Medication{" +
+                "idPrescription=" + idPrescription +
+                ", nameMedication='" + nameMedication + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

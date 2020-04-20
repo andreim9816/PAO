@@ -1,9 +1,11 @@
 package Repository;
-
+import ComparatorMedication.ComparatorMedication;
+import Main.Main;
 import Model.tratament.Medication;
 import Model.tratament.Prescription;
-
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class PrescriptionRepository
 {
@@ -11,9 +13,6 @@ public class PrescriptionRepository
 
     public PrescriptionRepository()
     {
-        /**
-         * Constructor
-         */
         prescriptionDB = new ArrayList<>();
     }
 
@@ -24,66 +23,39 @@ public class PrescriptionRepository
 
     public void add(Prescription r)
     {
-        /**
-         * Function that adds a speicific Reteta object
-          */
-
         prescriptionDB.add(r);
     }
 
-    public void remove(Prescription r)
-    {
-        /**
-         * Funtion that removes a specific Reteta from the Database, otherwise just prints a message
-         */
-
-        boolean var = prescriptionDB.remove(r);
-        if(!var)
-            System.out.println(r + " was not removed because it doesn't exist");
-    }
-
-    public Prescription getPrescriptionReference(Prescription P)
+    public Prescription getPrescriptionById(int idPrescription)
     {
         for(Prescription p : prescriptionDB)
-            if(p.equals(P))
+            if(p.getIdPrescription() == idPrescription)
                 return p;
         return null;
     }
 
-    public void removeByName(String lastName, String firstName)
+    public Set<Medication> getMedicationsFromPrescription(int prescriptionId)
     {
-        /**
-         * Function that removes all the Reteta objects that are acquired by a specific patient
-         */
-        boolean value = false;
+        Set<Medication> result = new TreeSet<Medication>(new ComparatorMedication());
 
-        for(Prescription r : prescriptionDB)
-            if(r.getPatientLastName().equals(lastName) && r.getPatientFirstName().equals(firstName))
-            {
-                prescriptionDB.remove(r);
-                value = true;
-            }
-
-        if(value == false)
-            System.out.println("No Reteta object was removed because it doesn't exist");
+        for(Medication m : Main.medicationService.getAllMedication())
+            if(m.getIdPrescription() == prescriptionId)
+                result.add(m);
+        return result;
     }
 
     public void removeById(int ID)
     {
-        /**
-         * Function that removes a specific Reteta object, identiied by its ID
-         */
-
-        boolean value = false;
+        boolean isRemoved = false;
         for(Prescription r : prescriptionDB)
-            if(r.getID() == ID)
+            if(r.getIdPrescription() == ID)
             {
                 prescriptionDB.remove(r);
-                value = true;
+                isRemoved = true;
                 break;
             }
 
-        if(value == false)
-            System.out.println("No Reteta object was removed because it doesn't exist");
+        if(isRemoved == false)
+            System.out.println("No Prescription object was removed because it doesn't exist");
     }
 }

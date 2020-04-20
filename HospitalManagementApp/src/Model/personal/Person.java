@@ -1,42 +1,38 @@
 package Model.personal;
+
 import java.util.Objects;
 
 abstract public class Person
 {
     protected String lastName;
     protected String firstName;
-    private int ID;
+    protected String CNP;
+    protected int idHospital;
+    protected String nameDepartment;
+
     static int noOfObjects = 0;
     {
         noOfObjects++;
     }
 
-    public Person()
+    public Person(String lastName, String firstName, String CNP)
     {
-        lastName = firstName = "";
-        ID = noOfObjects;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.CNP = CNP;
     }
 
-    public Person(String lastName , String firstName)
+    public Person(Person p)
     {
-        setLastName(lastName);
-        setFirstName(firstName);
-        ID = noOfObjects;
+        setFirstName(p.firstName);
+        setLastName(p.lastName);
+        setCNP(p.CNP);
+        setIdHospital(p.idHospital);
+        setNameDepartment(p.nameDepartment);
     }
 
-    public String getlastName()
-    {
+    public String getLastName() {
         return lastName;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public int getID()
-    {
-        return ID;
     }
 
     public void setLastName(String lastName)
@@ -44,25 +40,54 @@ abstract public class Person
         this.lastName = lastName;
     }
 
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
 
-    public void setPerson(String lastName,  String firstName)
+    public String getCNP()
     {
-        setLastName(lastName);
-        setFirstName(firstName);
-        ID = noOfObjects;
+        return CNP;
     }
 
-    @Override
-    public String toString()
+    public void setCNP(String CNP)
     {
-        return "Person { " +
-                "lastName = " + lastName + '\'' +
-                ", firstName = '" + firstName + '\'' +
-                " } ";
+        this.CNP = CNP;
+    }
+
+    public int getIdHospital()
+    {
+        return idHospital;
+    }
+
+    public void setIdHospital(int idHospital)
+    {
+        this.idHospital = idHospital;
+    }
+
+    public String getNameDepartment()
+    {
+        return nameDepartment;
+    }
+
+    public void setNameDepartment(String nameDepartment)
+    {
+        this.nameDepartment = nameDepartment;
+    }
+
+    public static int getNoOfObjects()
+    {
+        return noOfObjects;
+    }
+
+    public static void setNoOfObjects(int noOfObjects)
+    {
+        Person.noOfObjects = noOfObjects;
     }
 
     @Override
@@ -71,7 +96,7 @@ abstract public class Person
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(getlastName(), person.getlastName()) &&
-                Objects.equals(getFirstName(), person.getFirstName());
+        return Objects.equals(getCNP(), person.getCNP());
     }
+
 }

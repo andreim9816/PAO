@@ -1,60 +1,60 @@
 package Model.tratament;
 
-import java.util.Objects;
-import java.util.Vector;
-
 public class Prescription
 {
-    private String patientFirstName;
-    private String patientLastName;
+    private String CNPPatient;
+    private String CNPDoctor;
     private String recommendation;
-    private Vector<Medication> arrayMedication;
     private static int noOfObjects = 0;
-    private int ID = 0;
+    private int idPrescription = 0;
     {
         noOfObjects++;
     }
 
-    public Prescription( )
+    public Prescription(String recommendation)
     {
-        patientFirstName = patientLastName = recommendation = "";
-        arrayMedication = new Vector<>();
-        ID = noOfObjects;
+        this.recommendation = recommendation;
+        idPrescription = noOfObjects;
     }
 
-    public String getPatientFirstName()
+    public static void setNoOfObjects(int nr)
     {
-        return patientFirstName;
+        noOfObjects = nr;
     }
 
-    public String getPatientLastName()
+    public String getCNPPatient()
     {
-        return patientLastName;
+        return CNPPatient;
+    }
+
+    public void setCNPPatient(String CNPPatient)
+    {
+        this.CNPPatient = CNPPatient;
+    }
+
+    public String getCNPDoctor()
+    {
+        return CNPDoctor;
+    }
+
+    public void setCNPDoctor(String CNPDoctor)
+    {
+        this.CNPDoctor = CNPDoctor;
+    }
+
+    public int getIdPrescription()
+    {
+        return idPrescription;
+    }
+
+    public void setIdPrescription(int idPrescription)
+    {
+        this.idPrescription = idPrescription;
     }
 
     public String getRecommendation()
     {
         return recommendation;
-    }
-
-    public Vector<Medication> getArrayMedication()
-    {
-        return arrayMedication;
-    }
-
-    public int getID()
-    {
-        return ID;
-    }
-
-    public void setPatientLastName(String patientLastName)
-    {
-        this.patientLastName = patientLastName;
-    }
-
-    public void setPatientFirstName(String patientFirstName)
-    {
-        this.patientFirstName = patientFirstName;
     }
 
     public void setRecommendation(String recommendation)
@@ -63,22 +63,23 @@ public class Prescription
     }
 
     @Override
+    public String toString()
+    {
+        return "Prescription{" +
+                "idPrescription=" + idPrescription +
+                ", Emis de doctorul cu CNP = " + CNPDoctor + '\'' +
+                ", Pentru pacientul cu CNP = " + CNPPatient + '\'' +
+                ", Recommendation = " + recommendation + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o)
     {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prescription that = (Prescription) o;
-        return (getID() == that.getID());
+        return (getIdPrescription() == that.getIdPrescription());
     }
 
-    @Override
-    public String toString() {
-        return "Prescription{" +
-                "patientFirstName='" + patientFirstName + '\'' +
-                ", patientLastName='" + patientLastName + '\'' +
-                ", recommendation='" + recommendation + '\'' +
-                ", arrayMedication=" + arrayMedication +
-                ", ID=" + ID +
-                '}';
-    }
 }

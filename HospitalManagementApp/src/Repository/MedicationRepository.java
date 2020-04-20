@@ -1,80 +1,43 @@
 package Repository;
-
+import ComparatorMedication.ComparatorMedication;
 import Model.tratament.Medication;
-import com.sun.java.swing.plaf.motif.MotifEditorPaneUI;
-
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class MedicationRepository
 {
-    private ArrayList<Medication> medicationDB;
+    private Set<Medication> medicationDB;
 
     public MedicationRepository()
     {
-        /**
-         * Constructor
-         */
-
-        medicationDB = new ArrayList<>();
+        medicationDB = new TreeSet<>(new ComparatorMedication());
     }
 
     public void add(Medication m)
     {
-        /**
-         * Function that adds a Medicament in the database
-         */
-
         medicationDB.add(m);
     }
 
-    public void remove(Medication m)
-    {
-        /**
-         * Funtion that removes a specific Medicament from the Database, otherwise just prints a message
-         */
-
-        boolean var = medicationDB.remove(m);
-        if(!var)
-            System.out.println(m + " was not removed because it doesn't exist");
-    }
-
-    public boolean isPrescribed(Medication m)
-    {
-        /**
-         * Function that checks if a specific medicament is prescribed
-         */
-
-        for(Medication med : medicationDB)
-            if(med.getName().equals(m.getName()))
-                return true;
-        return false;
-    }
-
-    public Medication getMedicationReference(Medication M)
-    {
-        for(Medication m : medicationDB)
-            if(m.equals(M))
-                return m;
-        return null;
-    }
-    public ArrayList<Medication> getMedicamentByName(String name)
-    {
-        /**
-         * Function that returns a list of Medicament objects that are of a specific name
-         */
-        ArrayList<Medication> result = new ArrayList<>();
-
-        for(Medication m : medicationDB)
-            if(m.getName().equals(name))
-                result.add(m);
-
-        return result;
-    }
-
-    public ArrayList<Medication> getAllMedicament()
+    public Set<Medication> getAllMedication()
     {
         return medicationDB;
     }
 
+    public Medication getMedicationByIdPrescriptionAndName(int idPrescription, String nameMedication)
+    {
+        for(Medication m : medicationDB)
+            if(m.getNameMedication().equals(nameMedication) && m.getIdPrescription() == idPrescription)
+                return m;
+        return null;
+    }
 
+    public Set<Medication> getAllMedicament()
+    {
+        return medicationDB;
+    }
+
+    public void remove(Medication m)
+    {
+         medicationDB.remove(m);
+    }
 }

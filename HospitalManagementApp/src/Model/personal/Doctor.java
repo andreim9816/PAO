@@ -1,20 +1,18 @@
 package Model.personal;
 
-import java.util.Objects;
-
 public class Doctor extends Person
 {
     private String grade;
 
-    public Doctor()
+    public Doctor(String lastName, String firstName, String CNP, String grade)
     {
-        super();
-        grade = "";
+        super(lastName, firstName, CNP);
+        this.grade = grade;
     }
 
-    public Doctor(String lastName , String firstName , String grade)
+    public Doctor(Person p, String grade)
     {
-        super(lastName , firstName);
+        super(p);
         this.grade = grade;
     }
 
@@ -23,29 +21,27 @@ public class Doctor extends Person
         return grade;
     }
 
-    public void setGrade(String gr)
+    public void setGrade(String grade)
     {
-        grade = new String(gr);
+        this.grade = grade;
     }
 
     @Override
     public String toString()
     {
-        return "Medic { " +
-                "grade = '" + grade + '\'' +
-                ", lastName = '" + lastName + '\'' +
-                ", firstName = '" + firstName + '\'' +
-                " } ";
+        return "Doctor{" +
+                "grade='" + grade + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", CNP=" + CNP +
+                ", idHospital=" + idHospital +
+                ", nameDepartment='" + nameDepartment + '\'' +
+                '}';
     }
 
     @Override
-    public boolean equals(Object o)
+    public boolean equals(Object obj)
     {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals((Person)o)) return false;
-        Doctor doctor = (Doctor) o;
-        return Objects.equals(getGrade(), doctor.getGrade());
+        return super.equals(obj);
     }
-
 }

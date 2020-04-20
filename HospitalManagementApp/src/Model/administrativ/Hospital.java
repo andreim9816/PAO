@@ -1,53 +1,41 @@
 package Model.administrativ;
 
-import java.lang.reflect.Array;
-import java.util.Vector;
-import java.util.Objects;
-import java.util.Vector;
-
 public class Hospital
 {
-    private Address address;
     private String name;
-    private Vector<Department> arrayDepartment;
+    private int idHospital = 0;
+    private static int noOfObjects = 0;
+    {
+        noOfObjects++;
+    }
 
     public Hospital()
     {
         name = "";
-        address = new Address();
-        arrayDepartment = new Vector<>();
+        idHospital = noOfObjects;
     }
 
-    public Hospital(Address address)
+    public Hospital(String name)
     {
-        name = "";
-        this.address = new Address(address);
-        arrayDepartment = new Vector<>();
+        this.name = new String(name);
+        this.idHospital = noOfObjects;
     }
 
-    public Hospital(Address adr , String name)
+    public Hospital(int idHospital, String name)
     {
-        this.address = adr;
-        this.name = name;
-        arrayDepartment = new Vector<>();
-
+        setName(name);
+        setIdHospital(idHospital);
     }
 
-    public Hospital(Address address, String name , Vector<Department> arrayDepartment)
+    public Hospital(Hospital h)
     {
-        this.name = name;
-        this.address = address;
-        this.arrayDepartment = arrayDepartment;
+        setName(h.name);
+        setIdHospital(h.idHospital);
     }
 
-    public Address getAddress()
+    public static void setNoOfObjects(int nr)
     {
-        return address;
-    }
-
-    public Vector<Department> getArrayDepartment()
-    {
-        return arrayDepartment;
+        noOfObjects = nr;
     }
 
     public String getName()
@@ -55,21 +43,25 @@ public class Hospital
         return name;
     }
 
-    public void setAddress(Address address)
-    {
-        this.address = address;
-    }
-
     public void setName(String name)
     {
-        this.name = name;
+        this.name = new String(name);
     }
 
-    public void setArrayDepartment(Vector<Department> arrayDepartment)
+    public int getIdHospital()
     {
-        this.arrayDepartment = arrayDepartment;
+        return idHospital;
     }
 
+    public void setIdHospital(int idHospital)
+    {
+        this.idHospital = idHospital;
+    }
+
+    public static int getNoOfObjects()
+    {
+        return noOfObjects;
+    }
 
     @Override
     public boolean equals(Object o)
@@ -77,45 +69,15 @@ public class Hospital
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hospital hospital = (Hospital) o;
-        return Objects.equals(getAddress(), hospital.getAddress()) &&
-                Objects.equals(getName(), hospital.getName()) &&
-                Objects.equals(getArrayDepartment(), hospital.getArrayDepartment());
+        return (getIdHospital() == hospital.getIdHospital());
     }
 
     @Override
     public String toString() {
-        return "Spital { " +
-                "adresa = " + address +
-                ", name = '" + name + '\'' +
-                ", arrayDepartment = " + arrayDepartment +
-                " } ";
-    }
-
-    public static void main(String[] args)
-    {
-        Hospital h = new Hospital(new Address("Cuza Voda" , "Roman" , "Neamt" , 10));
-        Hospital h1 = new Hospital(new Address("Tineretului" , "Piatra Neamt" , "Neamt" , 10));
-
-        Department s = new Department("Cardiologie"  ,10);
-        Department s1 = new Department("Neurologie"  , 26);
-
-        System.out.println(h);
-        /**
-         * h.print();
-         * h1.print();
-         */
-
-        System.out.println("----------------");
-
-        Vector<Department>vectDepartment  = h.getArrayDepartment();
-        vectDepartment.get(0).setName("Andrei");
-
-        /**
-         *
-         * h.print();
-         *         h1.print();
-         */
-
+        return "Hospital{" +
+                " idHospital=" + idHospital +
+                " name='" + name + '\'' +
+                '}';
     }
 }
 

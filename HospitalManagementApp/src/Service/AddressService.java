@@ -3,10 +3,11 @@ package Service;
 import Model.administrativ.Address;
 import Repository.AddressRepository;
 
+import java.util.ArrayList;
+
 public class AddressService
 {
-    private AddressRepository addressRepository;
-
+    private AddressRepository addressRepository = new AddressRepository();
     private static AddressService instance = new AddressService();
 
     private AddressService(){}
@@ -16,49 +17,58 @@ public class AddressService
         return instance;
     }
 
-    public void removeAddress(Address d)
+    public void addAddress(Address address, int idHospital)
     {
-        /**
-         * Function that removes a specified Address
-         */
-
-        addressRepository.remove(d);
+        address.setIdHospital(idHospital);
+        addressRepository.add(address);
     }
 
-    public void changeAddressStreet(Address D , String street)
+    public Address getHospitalAddress(int idHospital)
     {
-        /**
-         * Function that changes a specified Address' street
-         */
-        Address adr = addressRepository.getAddressReference(D); // gets a reference to the Address D in the Repository
-        adr.setStreet(street);
+        Address adr = addressRepository.getAddressByIdHospital(idHospital);
+        if(adr == null)
+            throw new IllegalArgumentException("No address found!");
+        else return adr;
     }
 
-    public void changeAddressCity(Address D , String city)
+    public void changeStreet(String newStreetName, int idHospital)
     {
-        /**
-         * Function that changes a specified Address' city
-         */
-        Address adr = addressRepository.getAddressReference(D); // gets a reference to the Address D in the Repository
-        adr.setCity(city);
+        Address address = addressRepository.getAddressByIdHospital(idHospital);
+        if(address == null)
+            throw new IllegalArgumentException("No address found!");
+
+        address.setStreet(newStreetName);
     }
 
-    public void changeAddressRegion(Address D , String region)
+    public void changeCity(String newCityName, int idHospital)
     {
-        /**
-         * Function that changes a specified Address' region
-         */
-        Address adr = addressRepository.getAddressReference(D); // gets a reference to the Address D in the Repository
-        adr.setRegion(region);
+        Address address = addressRepository.getAddressByIdHospital(idHospital);
+        if(address == null)
+            throw new IllegalArgumentException("No address found!");
+
+        address.setCity(newCityName);
     }
 
-    public void changeAddressNumber(Address D , int number)
+    public void changeNumber(int newNumber, int idHospital)
     {
-        /**
-         * Function that changes a specified Address' number
-         */
+        Address address = addressRepository.getAddressByIdHospital(idHospital);
+        if(address == null)
+            throw new IllegalArgumentException("No address found!");
 
-        Address adr = addressRepository.getAddressReference(D); // gets a reference to the Address D in the Repository
-        adr.setNr(number);
+        address.setNr(newNumber);
+    }
+
+    public void changeRegion(String newRegionName, int idHospital)
+    {
+        Address address = addressRepository.getAddressByIdHospital(idHospital);
+        if(address == null)
+            throw new IllegalArgumentException("No address found!");
+
+        address.setRegion(newRegionName);
+    }
+
+    public ArrayList<Address> getAllAddress()
+    {
+        return addressRepository.getAllAddress();
     }
 }

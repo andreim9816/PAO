@@ -1,7 +1,6 @@
 package Repository;
 
 import Model.administrativ.Address;
-
 import java.util.ArrayList;
 
 public class AddressRepository
@@ -18,28 +17,29 @@ public class AddressRepository
         addressDB.add(adr);
     }
 
-    public ArrayList<Address> getAll()
+    public ArrayList<Address> getAllAddress()
     {
         return addressDB;
     }
 
     public Address getAddressReference(Address D)
     {
-        /**
-         * Function that returns a reference to the specified object
-         */
-
         for(Address d: addressDB)
-            if(d.equals(D))
+            if(d.getIdHospital() == D.getIdHospital())
                 return d;
         return null;
     }
+
+    public Address getAddressByIdHospital(int idHospital)
+    {
+        for(Address a : addressDB)
+            if(a.getIdHospital() == idHospital)
+                return a;
+        return null;
+    }
+
     public void remove(Address adr)
     {
-        /**
-         * Function that removes a specific Address
-         */
-
         addressDB.remove(adr);
     }
 }

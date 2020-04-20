@@ -1,8 +1,5 @@
 package Repository;
-
 import Model.administrativ.Department;
-import Model.administrativ.Hospital;
-
 import java.util.ArrayList;
 
 public class DepartmentRepository
@@ -16,9 +13,6 @@ public class DepartmentRepository
 
     public void add(Department d)
     {
-        /**
-         * Function that adds a Department in the database
-         */
         departmentDB.add(d);
     }
 
@@ -27,30 +21,16 @@ public class DepartmentRepository
         return departmentDB;
     }
 
-    public ArrayList<Department> getDepartmentByName(String name)
+    public Department getDepartmentReference(int idHospital, String nameDepartment)
     {
-        ArrayList<Department> result = new ArrayList<>();
-
-        for(Department d : departmentDB)
-            if(d.getName().equals(name))
-                result.add(d);
-
-        return result;
-    }
-
-    public Department getDepartmentReference(Department D)
-    {
-        for(Department d : departmentDB)
-            if(d.equals(D))
-                return d;
+        for(int i = 0 ; i < departmentDB.size() ; i++)
+            if(departmentDB.get(i).getIdHospital() == idHospital && departmentDB.get(i).getNameDepartment().equals(nameDepartment))
+                return departmentDB.get(i);
         return null;
     }
 
     public void remove(Department d)
     {
-        /**
-         * Function that removes a specific department
-         */
         departmentDB.remove(d);
     }
 }

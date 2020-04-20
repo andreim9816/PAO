@@ -1,10 +1,10 @@
 package Service;
-
-import Model.administrativ.Address;
+import Main.Main;
 import Model.administrativ.Department;
 import Model.administrativ.Hospital;
 import Repository.HospitalRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HospitalService
@@ -21,67 +21,83 @@ public class HospitalService
 
     public void addHospital(Hospital h)
     {
-        // adds a Hospital
+        Main.auditService.write("Add hospital");
         hospitalRepository.add(h);
+        Main.hospitalCsvService.writeFile(h);
     }
 
-    public Hospital getHospitalByAddress(Address adr)
+    public HospitalRepository getHospitalRepository()
     {
-        // returns an Hospital, specified by its address
-        return hospitalRepository.getHospitalByAddress(adr);
+        return hospitalRepository;
     }
 
-    public void changeHospitalNameByAddress(Address adr , String name)
+    public Hospital getHospitalById(int id)
     {
-        // Function that changes a hospital's name
-        Hospital h = hospitalRepository.getHospitalByAddress(adr);
-
-        if(h != null)
-            h.setName(name);
-        else throw new IllegalArgumentException("The hospital doesn't exist");
+        Main.auditService.write("Get an Hospital by ID");
+        return hospitalRepository.getHospitalById(id);
     }
 
-    public Hospital getHospitalReference(Hospital h)
+    public boolean hospitalExists(int id)
     {
-        return hospitalRepository.getHospitalRefernce(h);
+        if(hospitalRepository.getHospitalById(id) == null)
+            return false;
+        return true;
     }
 
+    public void printHospital(int id)
+    {
+        Hospital h = getHospitalById(id);
+        if(h == null)
+            throw new IllegalArgumentException("This hospital does not exist!");
+        System.out.println(h);
+    }
     public ArrayList<Hospital> getAllHospital()
     {
+        Main.auditService.write("Get all Hospitals");
         return hospitalRepository.getAllHospital();
     }
 
-    public void addDepartmentToRepository(Department D)
+    public ArrayList<Department> getAllDepartmentsFromHospital(int idHospital)
     {
-        ArrayList<Department> depDB = Main.Main.departmentService.getAllDepartment(); // gets the departments from the database
-        depDB.add(D);
+        Main.auditService.write("Get all Departments from a Hospital");
+        ArrayList<Department> departments = DepartmentService.getInstance().getAllDepartment();
+        ArrayList<Department> result = new ArrayList<>();
+
+        for(Department department : departments)
+            if(department.getIdHospital() == idHospital)
+                result.add(department);
+        return result;
     }
 
-    public void addDepartmentToHospital(Hospital H , Department D)
+    public void changeHospitalName(String newName, int id) throws IllegalArgumentException
     {
-        /**
-         * Function that adds a specific Department to a specific Hospital
-         */
-
-        addDepartmentToRepository(D); // adds department to Repository
-        hospitalRepository.getHospitalRefernce(H).getArrayDepartment().add(D);  // adds Department D to the array
+        AuditService.getInstance().write("Change a hospital's name");
+        Hospital h = hospitalRepository.getHospitalById(id);
+        if(h == null)
+            throw new IllegalArgumentException("This hospital does not exist!");
+        else
+        {
+            System.out.println("Intra si aici");
+            h.setName(newName);
+            HospitalCsvService.getInstance().updateFile();
+        }
     }
 
-    public void changeNoOfBeds(Hospital H , Department D , int numberOfBeds)
+    public void remove(int idHospital)
     {
-        /**
-         * Function that changes the number of beds from a specific Department from a specified Hospital
-         */
+        Main.auditService.write("Remove an Hospital");
+        Hospital h = instance.getHospitalById(idHospital);
+        if(h == null)
+            throw new IllegalArgumentException("This hosptial does not exist!");
+        else
+        {
+            ArrayList<Department> departments = instance.getAllDepartmentsFromHospital(idHospital);
+            System.out.println("Departamentele sunt: " + departments);
+            for(Department department : departments)
+                DepartmentService.getInstance().remove(idHospital, department.getNameDepartment());
 
-        Hospital h = hospitalRepository.getHospitalRefernce(H); // gets a reference to the Hospital H in the Repository
-        Department d = hospitalRepository.getDepartmentReference(h , D); // gets a reference to the Department D in the Repository
-        d.setNoOfBeds(numberOfBeds);
-    }
-
-    public void remove(Hospital H)
-    {
-        /**
-         * Function that removes a specified Hospital
-         */
+            hospitalRepository.remove(h);
+            HospitalCsvService.getInstance().updateFile();
+        }
     }
 }

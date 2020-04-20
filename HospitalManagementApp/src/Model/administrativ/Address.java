@@ -5,20 +5,7 @@ public class Address
 {
     private String street, city, region;
     private int nr;
-
-    public Address()
-    {
-        street = city = region = "";
-        nr = 0;
-    }
-
-    public Address(Address obj)
-    {
-        street = new String(obj.street);
-        city = new String(obj.city);
-        region = new String(obj.region);
-        nr = obj.nr;
-    }
+    private int idHospital;
 
     public Address(String street, String city, String region, int nr)
     {
@@ -28,24 +15,18 @@ public class Address
         this.nr = nr;
     }
 
+    public Address(Address address)
+    {
+        setCity(address.city);
+        setRegion(address.region);
+        setNr(address.nr);
+        setStreet(address.street);
+        setIdHospital(address.idHospital);
+    }
+
     public String getStreet()
     {
         return street;
-    }
-
-    public String getCity()
-    {
-        return city;
-    }
-
-    public String getRegion()
-    {
-        return region;
-    }
-
-    public int getNr()
-    {
-        return nr;
     }
 
     public void setStreet(String street)
@@ -53,9 +34,19 @@ public class Address
         this.street = street;
     }
 
+    public String getCity()
+    {
+        return city;
+    }
+
     public void setCity(String city)
     {
         this.city = city;
+    }
+
+    public String getRegion()
+    {
+        return region;
     }
 
     public void setRegion(String region)
@@ -63,32 +54,44 @@ public class Address
         this.region = region;
     }
 
+    public int getNr()
+    {
+        return nr;
+    }
+
     public void setNr(int nr)
     {
         this.nr = nr;
     }
 
-    @Override
-    public String toString()
+    public int getIdHospital()
     {
-        return "Adresa {" +
-                "street = '" + street + '\'' +
-                ", city = '" + city + '\'' +
-                ", region = '" + region + '\'' +
-                ", nr = " + nr +
-                " } ";
+        return idHospital;
+    }
+
+    public void setIdHospital(int idHospital)
+    {
+        this.idHospital = idHospital;
     }
 
     @Override
-    public boolean equals(Object o)
+    public String toString()
     {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", nr=" + nr +
+                ", idHospital=" + idHospital +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return getNr() == address.getNr() &&
-                Objects.equals(getStreet(), address.getStreet()) &&
-                Objects.equals(getCity(), address.getCity()) &&
-                Objects.equals(getRegion(), address.getRegion());
+        return (getIdHospital() == address.getIdHospital());
     }
 }
 

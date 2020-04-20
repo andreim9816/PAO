@@ -1,8 +1,9 @@
 package Service;
 
-import Model.tratament.Dosage;
 import Model.tratament.Medication;
 import Repository.MedicationRepository;
+
+import java.util.Set;
 
 public class MedicationService
 {
@@ -16,30 +17,35 @@ public class MedicationService
         return instance;
     }
 
-    public void add(Medication m)
+    public void add(Medication m, int idPrescription)
     {
+        m.setIdPrescription(idPrescription);
         medicationRepository.add(m);
     }
 
-    public Medication getMedicationReference(Medication M)
+    public Medication getMedicationByIdPrescriptionAndName(int idPrescription, String nameMedication)
     {
-        return medicationRepository.getMedicationReference(M);
+        return medicationRepository.getMedicationByIdPrescriptionAndName(idPrescription, nameMedication);
     }
 
-    public void changeDosage(Medication M , Dosage D)
+    public Set<Medication> getAllMedication()
     {
-        medicationRepository.getMedicationReference(M).setdosage(D);
+        return medicationRepository.getAllMedication();
     }
 
-    public void changeDosage(Medication M , String name)
+    public void changeQuantity(int newQuantity, int idPrescription, String nameMedication)
     {
-        medicationRepository.getMedicationReference(M).setName(name);
+        Medication m = getMedicationByIdPrescriptionAndName(idPrescription, nameMedication);
+        if(m == null)
+            throw new IllegalArgumentException("Medication does not exist!");
+        m.setQuantity(newQuantity);
     }
 
-    public void remove(Medication m)
+    public void remove(int idPrescription, String nameMedication)
     {
-        medicationRepository.remove(m);
+       Medication m = instance.getMedicationByIdPrescriptionAndName(idPrescription, nameMedication);
+       if(m == null)
+           throw new IllegalArgumentException("No medication was deleted because it was not found");
+       else medicationRepository.remove(m);
     }
-
-
 }
