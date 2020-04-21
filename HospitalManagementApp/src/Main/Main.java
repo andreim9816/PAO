@@ -12,6 +12,7 @@ import java.util.Set;
 
 public class Main
 {
+    // Services
     public static HospitalService hospitalService = HospitalService.getInstance();
     public static DepartmentService departmentService = DepartmentService.getInstance();
     public static PersonService personService = PersonService.getInstance();
@@ -19,14 +20,22 @@ public class Main
     public static PrescriptionService prescriptionService = PrescriptionService.getInstance();
     public static AddressService addressService = AddressService.getInstance();
 
+    // Non-generic services for handling read/write files
     public static AuditService auditService = AuditService.getInstance();
     public static HospitalCsvService hospitalCsvService = HospitalCsvService.getInstance();
     public static DepartmentCsvService departmentCsvService = DepartmentCsvService.getInstance();
     public static PersonCsvService personCsvService = PersonCsvService.getInstance();
     public static PrescriptionCsvService prescriptionCsvService = PrescriptionCsvService.getInstance();
 
+    // Generic services for file writing
+    public static WriteFileService<Hospital> writeFileServiceHospital = WriteFileService.getInstance();
+    public static WriteFileService<Department> writeFileServiceDepartment = WriteFileService.getInstance();
+    public static WriteFileService<Prescription> writeFileServicePrescription = WriteFileService.getInstance();
+    public static WriteFileService<Person> writeFileServicePerson = WriteFileService.getInstance();
+
     public static void main(String[] args)
     {
+            // reads data from .csv files
             hospitalCsvService.setFileName("hospital.csv");
             hospitalCsvService.readFile();
 
@@ -38,6 +47,8 @@ public class Main
 
             prescriptionCsvService.setFileName("prescription.csv");
             prescriptionCsvService.readFile();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             Scanner in = new Scanner(System.in);
             int option;

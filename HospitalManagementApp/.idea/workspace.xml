@@ -15,7 +15,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/PAO" />
+  </component>
   <component name="ProjectId" id="1Zd7FFWAEt11GZFAOcoYFEOZ2ha" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -113,6 +117,8 @@
       <workItem from="1587304678500" duration="21449000" />
       <workItem from="1587373731348" duration="8581000" />
       <workItem from="1587382355282" duration="24397000" />
+      <workItem from="1587493315860" duration="32000" />
+      <workItem from="1587501907577" duration="10960000" />
     </task>
     <servers />
   </component>
@@ -128,6 +134,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1585157337542" />
+    <state x="456" y="171" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587504785405">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="456" y="171" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1587504785405" />
     <state x="488" y="78" width="461" height="649" key="#com.intellij.ide.util.MemberChooser" timestamp="1587395558209">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -144,22 +154,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="441" y="239" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1585669442564" />
-    <state width="1323" height="219" key="GridCell.Tab.0.bottom" timestamp="1587408133250">
+    <state width="1323" height="348" key="GridCell.Tab.0.bottom" timestamp="1587513380959">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="219" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587408133250" />
-    <state width="1323" height="219" key="GridCell.Tab.0.center" timestamp="1587408133249">
+    <state width="1323" height="348" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587513380959" />
+    <state width="1323" height="348" key="GridCell.Tab.0.center" timestamp="1587513380959">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="219" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1587408133249" />
-    <state width="1323" height="219" key="GridCell.Tab.0.left" timestamp="1587408133249">
+    <state width="1323" height="348" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1587513380959" />
+    <state width="1323" height="348" key="GridCell.Tab.0.left" timestamp="1587513380959">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="219" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1587408133249" />
-    <state width="1323" height="219" key="GridCell.Tab.0.right" timestamp="1587408133249">
+    <state width="1323" height="348" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1587513380959" />
+    <state width="1323" height="348" key="GridCell.Tab.0.right" timestamp="1587513380959">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="219" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1587408133249" />
+    <state width="1323" height="348" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1587513380959" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1586986562602">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -176,10 +186,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1586986562602" />
-    <state x="378" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1587382385172">
+    <state x="378" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1587501921085">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="378" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1587382385172" />
+    <state x="378" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1587501921085" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1587405827661">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

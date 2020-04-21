@@ -1,6 +1,11 @@
 package Model.administrativ;
 
-public class Hospital
+import Model.Utils.Printable;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class Hospital implements Printable
 {
     private String name;
     private int idHospital = 0;
@@ -61,6 +66,11 @@ public class Hospital
     public static int getNoOfObjects()
     {
         return noOfObjects;
+    }
+
+    public void print(BufferedWriter bufferedWriter) throws IOException
+    {
+        bufferedWriter.write(getIdHospital() + "," + getName() + "\r\n");
     }
 
     @Override

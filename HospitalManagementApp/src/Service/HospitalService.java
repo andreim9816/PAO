@@ -3,8 +3,6 @@ import Main.Main;
 import Model.administrativ.Department;
 import Model.administrativ.Hospital;
 import Repository.HospitalRepository;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HospitalService
@@ -23,7 +21,8 @@ public class HospitalService
     {
         Main.auditService.write("Add hospital");
         hospitalRepository.add(h);
-        Main.hospitalCsvService.writeFile(h);
+        Main.writeFileServiceHospital.appendObject(h, "hospital.csv");
+//        Main.hospitalCsvService.writeFile(h);
     }
 
     public HospitalRepository getHospitalRepository()
@@ -51,6 +50,7 @@ public class HospitalService
             throw new IllegalArgumentException("This hospital does not exist!");
         System.out.println(h);
     }
+
     public ArrayList<Hospital> getAllHospital()
     {
         Main.auditService.write("Get all Hospitals");
@@ -79,7 +79,8 @@ public class HospitalService
         {
             System.out.println("Intra si aici");
             h.setName(newName);
-            HospitalCsvService.getInstance().updateFile();
+            Main.writeFileServiceHospital.updateFile(getAllHospital(), "hospital.csv");
+//            HospitalCsvService.getInstance().updateFile();
         }
     }
 
@@ -97,7 +98,8 @@ public class HospitalService
                 DepartmentService.getInstance().remove(idHospital, department.getNameDepartment());
 
             hospitalRepository.remove(h);
-            HospitalCsvService.getInstance().updateFile();
+            Main.writeFileServiceHospital.updateFile(getAllHospital(), "hospital.csv");
+//            HospitalCsvService.getInstance().updateFile();
         }
     }
 }

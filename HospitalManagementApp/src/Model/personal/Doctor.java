@@ -1,5 +1,8 @@
 package Model.personal;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Doctor extends Person
 {
     private String grade;
@@ -37,6 +40,14 @@ public class Doctor extends Person
                 ", idHospital=" + idHospital +
                 ", nameDepartment='" + nameDepartment + '\'' +
                 '}';
+    }
+
+    public void print(BufferedWriter bufferedWriter) throws IOException
+    {
+        Person person = this;
+        bufferedWriter.write(person.getCNP() + "," + person.getLastName() + "," +  person.getFirstName() + "," + person.getIdHospital() + "," +  person.getNameDepartment());
+        bufferedWriter.write("," + ((Doctor) person).getGrade());
+        bufferedWriter.write("\r\n");
     }
 
     @Override

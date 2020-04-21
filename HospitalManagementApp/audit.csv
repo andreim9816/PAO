@@ -1,58 +1,44 @@
-Add hospital,2020-04-20 21:27:07.174
-Add hospital,2020-04-20 21:27:18.839
-Change a hospital's name,2020-04-20 21:27:32.097
-Get all Hospitals,2020-04-20 21:27:32.098
-Get all Hospitals,2020-04-20 21:27:36.103
-Add department,2020-04-20 21:28:03.569
-Change number of beds,2020-04-20 21:28:32.218
-Get department,2020-04-20 21:28:32.218
-Get all departments,2020-04-20 21:28:32.219
-Add person,2020-04-20 21:29:42.089
-Get department,2020-04-20 21:29:42.089
-Add person,2020-04-20 21:30:44.447
-Get department,2020-04-20 21:30:44.447
-Get all patients from department,2020-04-20 21:30:44.448
-Get all patients,2020-04-20 21:30:44.448
-Get department,2020-04-20 21:30:44.448
-Get all persons,2020-04-20 21:30:55.892
-Get all patients from department,2020-04-20 21:31:07.661
-Get all patients,2020-04-20 21:31:07.664
-Add prescription,2020-04-20 21:32:34.621
-Get person by CNP,2020-04-20 21:32:34.621
-Get person by CNP,2020-04-20 21:32:34.622
-Remove an Hospital,2020-04-20 21:33:00.119
-Get an Hospital by ID,2020-04-20 21:33:00.119
-Get all Departments from a Hospital,2020-04-20 21:33:00.119
-Get all departments,2020-04-20 21:33:00.12
-Remove a department,2020-04-20 21:33:00.12
-Get department,2020-04-20 21:33:00.121
-Get all persons from department,2020-04-20 21:33:00.121
-Get all persons,2020-04-20 21:33:00.121
-Remove person,2020-04-20 21:33:00.122
-Get person by CNP,2020-04-20 21:33:00.122
-Get all persons,2020-04-20 21:33:00.123
-Remove person,2020-04-20 21:33:00.123
-Get person by CNP,2020-04-20 21:33:00.124
-Get patient's prescriptions,2020-04-20 21:33:00.124
-Get all prescriptions,2020-04-20 21:33:00.124
-Remove prescription,2020-04-20 21:33:00.125
-Get medications from prescription,2020-04-20 21:33:00.125
-Get all prescriptions,2020-04-20 21:33:00.127
-Get all persons,2020-04-20 21:33:00.128
-Get all departments,2020-04-20 21:33:00.128
-Get all Hospitals,2020-04-20 21:33:00.129
-Get all departments,2020-04-20 21:35:49.234
-Add department,2020-04-20 21:36:06.811
-Add person,2020-04-20 21:38:42.668
-Get department,2020-04-20 21:38:42.668
-Get all patients from department,2020-04-20 21:38:42.668
-Get all patients,2020-04-20 21:38:42.669
-Get department,2020-04-20 21:38:42.669
-Add person,2020-04-20 21:39:23.962
-Get department,2020-04-20 21:39:23.963
-Get all patients from department,2020-04-20 21:39:23.963
-Get all patients,2020-04-20 21:39:23.963
-Get department,2020-04-20 21:39:23.964
-Get all doctors,2020-04-20 21:39:32.07
-Get all patients,2020-04-20 21:39:35.955
-Get all nurses,2020-04-20 21:39:47.727
+Add hospital,2020-04-22 02:33:35.202
+Add hospital,2020-04-22 02:33:40.752
+Get all Hospitals,2020-04-22 02:33:43.529
+Change a hospital's name,2020-04-22 02:33:52.693
+Get all Hospitals,2020-04-22 02:33:52.693
+Get all Departments from a Hospital,2020-04-22 02:34:13.584
+Get all departments,2020-04-22 02:34:13.584
+Remove an Hospital,2020-04-22 02:34:27.957
+Get an Hospital by ID,2020-04-22 02:34:27.958
+Get all Departments from a Hospital,2020-04-22 02:34:27.958
+Get all departments,2020-04-22 02:34:27.958
+Get all Hospitals,2020-04-22 02:34:27.959
+Add department,2020-04-22 02:34:48.075
+Add department,2020-04-22 02:34:57.97
+Add person,2020-04-22 02:35:21.908
+Get department,2020-04-22 02:35:21.909
+Get department,2020-04-22 02:35:36.728
+Change number of beds,2020-04-22 02:35:50.554
+Get department,2020-04-22 02:35:50.554
+Get all departments,2020-04-22 02:35:50.555
+Add person,2020-04-22 02:36:29.088
+Get department,2020-04-22 02:36:29.089
+Get all patients from department,2020-04-22 02:36:29.089
+Get all patients,2020-04-22 02:36:29.089
+Get department,2020-04-22 02:36:29.09
+Get all doctors from department,2020-04-22 02:36:38.96
+Get all doctors,2020-04-22 02:36:38.96
+Remove prescription,2020-04-22 02:36:51.623
+Add person,2020-04-22 02:37:14.105
+Get department,2020-04-22 02:37:14.105
+Add department,2020-04-22 02:37:28.226
+Get all persons,2020-04-22 02:37:34.142
+Get all doctors,2020-04-22 02:37:37.065
+Add prescription,2020-04-22 02:38:26.072
+Get person by CNP,2020-04-22 02:38:26.075
+Add prescription,2020-04-22 02:38:45.992
+Get person by CNP,2020-04-22 02:38:45.992
+Get person by CNP,2020-04-22 02:38:45.993
+Change patient CNP on prescription,2020-04-22 02:39:06.552
+Change patient CNP on prescription,2020-04-22 02:41:02.325
+Get all prescriptions,2020-04-22 02:41:02.325
+Get all departments,2020-04-22 02:54:04.936
+Change prescription recommendation,2020-04-22 02:54:18.591
+Get all prescriptions,2020-04-22 02:54:18.591

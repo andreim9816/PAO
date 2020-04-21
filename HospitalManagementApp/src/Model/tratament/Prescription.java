@@ -1,6 +1,11 @@
 package Model.tratament;
 
-public class Prescription
+import Model.Utils.Printable;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class Prescription implements Printable
 {
     private String CNPPatient;
     private String CNPDoctor;
@@ -60,6 +65,11 @@ public class Prescription
     public void setRecommendation(String recommendation)
     {
         this.recommendation = recommendation;
+    }
+
+    public void print(BufferedWriter bufferedWriter)  throws IOException
+    {
+       bufferedWriter.write(getIdPrescription() + "," + getCNPDoctor() + "," + getCNPPatient() +"," + getRecommendation() + "\r\n");
     }
 
     @Override

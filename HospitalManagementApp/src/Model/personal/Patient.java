@@ -1,6 +1,7 @@
 package Model.personal;
 
-import java.util.Objects;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Patient extends Person {
     private boolean insured;
@@ -36,6 +37,15 @@ public class Patient extends Person {
                 ", idHospital=" + idHospital +
                 ", nameDepartment='" + nameDepartment + '\'' +
                 '}';
+    }
+
+    public void print(BufferedWriter bufferedWriter) throws IOException
+    {
+        Person person = this;
+        bufferedWriter.write(person.getCNP() + "," + person.getLastName() + "," +  person.getFirstName() + "," + person.getIdHospital() + "," +  person.getNameDepartment());
+        bufferedWriter.write("," + ((Patient) person).getInsured());
+        bufferedWriter.write("\r\n");
+
     }
 
     @Override

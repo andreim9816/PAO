@@ -7,7 +7,7 @@ import Model.tratament.Prescription;
 import java.io.*;
 import java.util.ArrayList;
 
-public class PrescriptionCsvService implements CsvService
+public class PrescriptionCsvService
 {
     private String fileName;
     private static PrescriptionCsvService instance = new PrescriptionCsvService();

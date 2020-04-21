@@ -1,7 +1,6 @@
 package Service;
 import ComparatorMedication.ComparatorMedication;
 import Main.Main;
-import Model.administrativ.Hospital;
 import Model.personal.Doctor;
 import Model.personal.Nurse;
 import Model.personal.Patient;
@@ -9,7 +8,6 @@ import Model.personal.Person;
 import Model.tratament.Medication;
 import Model.tratament.Prescription;
 import Repository.PersonRepository;
-
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -51,7 +49,8 @@ public class PersonService
                 p.setIdHospital(idHospital);
                 p.setNameDepartment(nameDepartment);
                 personRepository.add(p);
-                PersonCsvService.getInstance().writeFile(p);
+                Main.writeFileServicePerson.appendObject(p, "person.csv");
+//                PersonCsvService.getInstance().writeFile(p);
             }
             else throw new IllegalArgumentException("Department does not exist!");
         }
@@ -122,7 +121,8 @@ public class PersonService
         if(p == null)
             throw new IllegalArgumentException("No person found!");
         p.setFirstName(newName);
-        PersonCsvService.getInstance().updateFile();
+        Main.writeFileServicePerson.updateFile(getAllPerson(), "person.csv");
+//        PersonCsvService.getInstance().updateFile();
     }
 
     public void changeLastName(String newName, String CNP) throws IllegalArgumentException
@@ -132,7 +132,8 @@ public class PersonService
         if(p == null)
             throw new IllegalArgumentException("No person found!");
         p.setLastName(newName);
-        PersonCsvService.getInstance().updateFile();
+        Main.writeFileServicePerson.updateFile(getAllPerson(), "person.csv");
+//        PersonCsvService.getInstance().updateFile();
     }
 
     public void changeDoctorGrade(String grade, String CNP) throws IllegalArgumentException
@@ -147,7 +148,8 @@ public class PersonService
             ((Doctor) p).setGrade(grade);
         }
         else throw new IllegalArgumentException("Person is not a doctor!");
-        PersonCsvService.getInstance().updateFile();
+        Main.writeFileServicePerson.updateFile(getAllPerson(), "person.csv");
+//        PersonCsvService.getInstance().updateFile();
     }
 
     public void changePatientInsurance(Boolean insured, String CNP) throws IllegalArgumentException
@@ -159,7 +161,8 @@ public class PersonService
         if(p instanceof Patient)
             ((Patient) p).setInsured(insured);
         else throw new IllegalArgumentException("Person not a patient!");
-        PersonCsvService.getInstance().updateFile();
+        Main.writeFileServicePerson.updateFile(getAllPerson(), "person.csv");
+//        PersonCsvService.getInstance().updateFile();
     }
 
     public ArrayList<Person> getAllDoctorsFromDepartment(int idHospital, String nameDepartment)
@@ -264,6 +267,7 @@ public class PersonService
 
                 personRepository.remove(p);
             }
-        PersonCsvService.getInstance().updateFile();
+        Main.writeFileServicePerson.updateFile(getAllPerson(), "person.csv");
+//        PersonCsvService.getInstance().updateFile();
     }
 }

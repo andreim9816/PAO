@@ -2,6 +2,7 @@ package Service;
 
 import ComparatorMedication.ComparatorMedication;
 import Main.Main;
+import Model.personal.Person;
 import Model.tratament.Medication;
 import Model.tratament.Prescription;
 import Repository.PrescriptionRepository;
@@ -32,7 +33,8 @@ public class PrescriptionService
                 p.setCNPPatient(CNPPatient);
                 p.setCNPDoctor(CNPDoctor);
                 prescriptionRepository.add(p);
-                PrescriptionCsvService.getInstance().writeFile(p);
+                Main.writeFileServicePrescription.appendObject(p, "prescription.csv");
+//                PrescriptionCsvService.getInstance().writeFile(p);
             }
             else throw new IllegalArgumentException("No Patient found with that CNP!");
         }
@@ -65,8 +67,10 @@ public class PrescriptionService
         Prescription p = getPrescriptionById(idPrescription);
         if(p == null)
             throw new IllegalArgumentException("Prescription does not exist!");
+
         p.setRecommendation(newRecommendation);
-        PrescriptionCsvService.getInstance().updateFile();
+        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+//        PrescriptionCsvService.getInstance().updateFile();
     }
 
     public void changeCNPDoctor(String newCNP, int idPrescription)
@@ -76,19 +80,29 @@ public class PrescriptionService
         if(p == null)
             throw new IllegalArgumentException("Prescription does not exist!");
 
+        Person doctor = PersonService.getInstance().getPersonByCNP(newCNP); // checks if person exists. If not, an error is thrown
+        if(PersonService.getInstance().isDoctor(doctor.getCNP()) == false)
+            throw new IllegalArgumentException("No doctor with that CNP!");
+
         p.setCNPDoctor(newCNP);
-        PrescriptionCsvService.getInstance().updateFile();
+        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+//        PrescriptionCsvService.getInstance().updateFile();
     }
 
-    public void changeCNPPatient(String newCNP, int idPrescription)
+    public void changeCNPPatient(String newCNP, int idPrescription) throws IllegalArgumentException
     {
         AuditService.getInstance().write("Change patient CNP on prescription");
         Prescription p = getPrescriptionById(idPrescription);
         if(p == null)
             throw new IllegalArgumentException("Prescription does not exist!");
 
+        Person patient = PersonService.getInstance().getPersonByCNP(newCNP); // checks if person exists. If not, an error is thrown
+        if(PersonService.getInstance().isPatient(patient.getCNP()) == false)
+            throw new IllegalArgumentException("No patient with that CNP!");
+
         p.setCNPPatient(newCNP);
-        PrescriptionCsvService.getInstance().updateFile();
+        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+//        PrescriptionCsvService.getInstance().updateFile();
     }
 
     public Set<Medication> getMedicationsFromPrescription(int idPrescription)
@@ -120,7 +134,8 @@ public class PrescriptionService
                Main.medicationService.remove(m.getIdPrescription(), m.getNameMedication());
 
             prescriptionRepository.removeById(idPrescription);
-            PrescriptionCsvService.getInstance().updateFile();
+            Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+//            PrescriptionCsvService.getInstance().updateFile();
         }
     }
 }

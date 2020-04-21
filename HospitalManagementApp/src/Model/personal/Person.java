@@ -1,8 +1,10 @@
 package Model.personal;
 
+import Model.Utils.Printable;
+
 import java.util.Objects;
 
-abstract public class Person
+abstract public class Person implements Printable
 {
     protected String lastName;
     protected String firstName;

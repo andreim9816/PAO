@@ -1,5 +1,9 @@
 package Model.personal;
 
+import javax.swing.plaf.ViewportUI;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Nurse extends Person
 {
     public Nurse(String lastName, String firstName, String CNP)
@@ -24,6 +28,12 @@ public class Nurse extends Person
                 '}';
     }
 
+    public void print(BufferedWriter bufferedWriter) throws IOException
+    {
+        Person person = this;
+        bufferedWriter.write(person.getCNP() + "," + person.getLastName() + "," +  person.getFirstName() + "," + person.getIdHospital() + "," +  person.getNameDepartment());
+        bufferedWriter.write("\r\n");
+    }
     @Override
     public boolean equals(Object obj)
     {

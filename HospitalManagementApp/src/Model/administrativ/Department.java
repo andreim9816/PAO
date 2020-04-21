@@ -1,5 +1,11 @@
 package Model.administrativ;
-public class Department
+
+import Model.Utils.Printable;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class Department implements Printable
 {
     private String nameDepartment;
     private int noOfBeds;
@@ -55,6 +61,11 @@ public class Department
         this.idHospital = idHospital;
     }
 
+    public void print(BufferedWriter bufferedWriter) throws IOException
+    {
+
+        bufferedWriter.write(getIdHospital() + "," + getNameDepartment() + "," + getNoOfBeds() + "\r\n");
+    }
     @Override
     public String toString()
     {

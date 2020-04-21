@@ -1,5 +1,6 @@
 package Service;
 
+import Main.Main;
 import Model.administrativ.Department;
 import Model.personal.Person;
 import Repository.DepartmentRepository;
@@ -26,7 +27,8 @@ public class DepartmentService
         {
             d.setIdHospital(idHospital);
             departmentRepository.add(d);
-            DepartmentCsvService.getInstance().writeFile(d);
+            Main.writeFileServiceDepartment.appendObject(d, "department.csv");
+//            DepartmentCsvService.getInstance().writeFile(d);
         }
         else throw new IllegalArgumentException("Hospital does not exist!");
     }
@@ -67,7 +69,8 @@ public class DepartmentService
             throw new IllegalArgumentException("This department does not exist!");
 
         d.setNoOfBeds(noOfBeds);
-        DepartmentCsvService.getInstance().updateFile();
+        Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
+//        DepartmentCsvService.getInstance().updateFile();
     }
 
     public void changeNameDepartment(String newName, int idHospital, String nameDepartment)
@@ -78,7 +81,8 @@ public class DepartmentService
             throw new IllegalArgumentException("This department does not exist!");
 
         d.setNameDepartment(newName);
-        DepartmentCsvService.getInstance().updateFile();
+        Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
+//        DepartmentCsvService.getInstance().updateFile();
     }
 
     public ArrayList<Person> getAllPersonsFromDepartment(int idHospital, String nameDepartment)
@@ -102,11 +106,12 @@ public class DepartmentService
         else
         {
             ArrayList<Person> personsInDepartment = instance.getAllPersonsFromDepartment(idHospital, departmentName);
-            departmentRepository.remove(d);
             for(Person person : personsInDepartment)
                 PersonService.getInstance().remove(person.getCNP());
 
-            DepartmentCsvService.getInstance().updateFile();
+            departmentRepository.remove(d);
+            Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
+//            DepartmentCsvService.getInstance().updateFile();
         }
     }
 }
