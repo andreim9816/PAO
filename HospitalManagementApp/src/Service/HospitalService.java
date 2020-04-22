@@ -21,7 +21,8 @@ public class HospitalService
     {
         Main.auditService.write("Add hospital");
         hospitalRepository.add(h);
-        Main.writeFileServiceHospital.appendObject(h, "hospital.csv");
+        Main.writeFileService.appendObject(h, "hospital.csv");
+//        Main.writeFileServiceHospital.appendObject(h, "hospital.csv");
 //        Main.hospitalCsvService.writeFile(h);
     }
 
@@ -79,7 +80,8 @@ public class HospitalService
         {
             System.out.println("Intra si aici");
             h.setName(newName);
-            Main.writeFileServiceHospital.updateFile(getAllHospital(), "hospital.csv");
+            Main.writeFileService.updateFile(getAllHospital(), "hospital.csv");
+//            Main.writeFileServiceHospital.updateFile(getAllHospital(), "hospital.csv");
 //            HospitalCsvService.getInstance().updateFile();
         }
     }
@@ -98,7 +100,8 @@ public class HospitalService
                 DepartmentService.getInstance().remove(idHospital, department.getNameDepartment());
 
             hospitalRepository.remove(h);
-            Main.writeFileServiceHospital.updateFile(getAllHospital(), "hospital.csv");
+            Main.writeFileService.updateFile(getAllHospital(), "hospital.csv");
+//            Main.writeFileServiceHospital.updateFile(getAllHospital(), "hospital.csv");
 //            HospitalCsvService.getInstance().updateFile();
         }
     }

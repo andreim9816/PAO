@@ -33,7 +33,8 @@ public class PrescriptionService
                 p.setCNPPatient(CNPPatient);
                 p.setCNPDoctor(CNPDoctor);
                 prescriptionRepository.add(p);
-                Main.writeFileServicePrescription.appendObject(p, "prescription.csv");
+                Main.writeFileService.appendObject(p, "prescription.csv");
+//                Main.writeFileServicePrescription.appendObject(p, "prescription.csv");
 //                PrescriptionCsvService.getInstance().writeFile(p);
             }
             else throw new IllegalArgumentException("No Patient found with that CNP!");
@@ -69,7 +70,8 @@ public class PrescriptionService
             throw new IllegalArgumentException("Prescription does not exist!");
 
         p.setRecommendation(newRecommendation);
-        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+        Main.writeFileService.updateFile(getPrescriptionAll(), "pescription.csv");
+//        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
 //        PrescriptionCsvService.getInstance().updateFile();
     }
 
@@ -85,7 +87,9 @@ public class PrescriptionService
             throw new IllegalArgumentException("No doctor with that CNP!");
 
         p.setCNPDoctor(newCNP);
-        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+        Main.writeFileService.updateFile(getPrescriptionAll(), "pescription.csv");
+
+//        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
 //        PrescriptionCsvService.getInstance().updateFile();
     }
 
@@ -101,7 +105,9 @@ public class PrescriptionService
             throw new IllegalArgumentException("No patient with that CNP!");
 
         p.setCNPPatient(newCNP);
-        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+        Main.writeFileService.updateFile(getPrescriptionAll(), "pescription.csv");
+
+//        Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
 //        PrescriptionCsvService.getInstance().updateFile();
     }
 
@@ -134,7 +140,8 @@ public class PrescriptionService
                Main.medicationService.remove(m.getIdPrescription(), m.getNameMedication());
 
             prescriptionRepository.removeById(idPrescription);
-            Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
+            Main.writeFileService.updateFile(getPrescriptionAll(), "pescription.csv");
+//            Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
 //            PrescriptionCsvService.getInstance().updateFile();
         }
     }

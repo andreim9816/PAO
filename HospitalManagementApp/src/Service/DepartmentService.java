@@ -27,7 +27,8 @@ public class DepartmentService
         {
             d.setIdHospital(idHospital);
             departmentRepository.add(d);
-            Main.writeFileServiceDepartment.appendObject(d, "department.csv");
+            Main.writeFileService.appendObject(d, "department.csv");
+//            Main.writeFileServiceDepartment.appendObject(d, "department.csv");
 //            DepartmentCsvService.getInstance().writeFile(d);
         }
         else throw new IllegalArgumentException("Hospital does not exist!");
@@ -69,7 +70,8 @@ public class DepartmentService
             throw new IllegalArgumentException("This department does not exist!");
 
         d.setNoOfBeds(noOfBeds);
-        Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
+        Main.writeFileService.updateFile(getAllDepartment(), "department.csv");
+//        Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
 //        DepartmentCsvService.getInstance().updateFile();
     }
 
@@ -81,7 +83,8 @@ public class DepartmentService
             throw new IllegalArgumentException("This department does not exist!");
 
         d.setNameDepartment(newName);
-        Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
+        Main.writeFileService.updateFile(getAllDepartment(), "department.csv");
+//        Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
 //        DepartmentCsvService.getInstance().updateFile();
     }
 
@@ -110,7 +113,8 @@ public class DepartmentService
                 PersonService.getInstance().remove(person.getCNP());
 
             departmentRepository.remove(d);
-            Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
+            Main.writeFileService.updateFile(getAllDepartment(), "department.csv");
+//            Main.writeFileServiceDepartment.updateFile(getAllDepartment(), "department.csv");
 //            DepartmentCsvService.getInstance().updateFile();
         }
     }

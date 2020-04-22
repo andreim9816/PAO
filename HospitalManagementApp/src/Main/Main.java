@@ -28,10 +28,12 @@ public class Main
     public static PrescriptionCsvService prescriptionCsvService = PrescriptionCsvService.getInstance();
 
     // Generic services for file writing
-    public static WriteFileService<Hospital> writeFileServiceHospital = WriteFileService.getInstance();
-    public static WriteFileService<Department> writeFileServiceDepartment = WriteFileService.getInstance();
-    public static WriteFileService<Prescription> writeFileServicePrescription = WriteFileService.getInstance();
-    public static WriteFileService<Person> writeFileServicePerson = WriteFileService.getInstance();
+//    public static WriteFileService<Hospital> writeFileServiceHospital = WriteFileService.getInstance();
+//    public static WriteFileService<Department> writeFileServiceDepartment = WriteFileService.getInstance();
+//    public static WriteFileService<Prescription> writeFileServicePrescription = WriteFileService.getInstance();
+//    public static WriteFileService<Person> writeFileServicePerson = WriteFileService.getInstance();
+
+    public static WriteFileService writeFileService = WriteFileService.getInstance();
 
     public static void main(String[] args)
     {
