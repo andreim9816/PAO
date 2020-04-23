@@ -1,13 +1,13 @@
 package Service;
 
-import Model.Utils.Printable;
+import Model.Utils.WriteFile;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class WriteFileService<T extends Printable>
+public class WriteFileService<T extends WriteFile>
 {
     private static WriteFileService instance = new WriteFileService();
 
@@ -29,9 +29,7 @@ public class WriteFileService<T extends Printable>
 
             FileWriter fw = new FileWriter(file, true); // append mode = true
             BufferedWriter bufferedWriter = new BufferedWriter(fw);
-
             object.print(bufferedWriter);
-//            bufferedWriter.write(department.getIdHospital() + "," + department.getNameDepartment() + "," + department.getNoOfBeds() + "\r\n");
             bufferedWriter.flush();
             bufferedWriter.close();
         }

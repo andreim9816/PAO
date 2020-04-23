@@ -1,5 +1,5 @@
 package Service;
-import ComparatorMedication.ComparatorMedication;
+import Comparator.ComparatorMedication;
 import Main.Main;
 import Model.personal.Doctor;
 import Model.personal.Nurse;

@@ -1,10 +1,10 @@
 package Model.personal;
 
-import Model.Utils.Printable;
+import Model.Utils.WriteFile;
 
 import java.util.Objects;
 
-abstract public class Person implements Printable
+abstract public class Person implements WriteFile<Person>
 {
     protected String lastName;
     protected String firstName;

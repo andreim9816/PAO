@@ -26,6 +26,11 @@ public class HospitalService
 //        Main.hospitalCsvService.writeFile(h);
     }
 
+    public void addHospitalToRepo(Hospital h)
+    {
+        HospitalService.getInstance().getHospitalRepository().add(h);
+    }
+
     public HospitalRepository getHospitalRepository()
     {
         return hospitalRepository;

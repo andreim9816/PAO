@@ -1,5 +1,5 @@
 package Repository;
-import ComparatorMedication.ComparatorMedication;
+import Comparator.ComparatorMedication;
 import Main.Main;
 import Model.tratament.Medication;
 import Model.tratament.Prescription;

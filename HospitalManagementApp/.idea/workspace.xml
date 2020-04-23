@@ -35,6 +35,11 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Model.Utils" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main (1)">
     <configuration name="Hospital" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Model.administrativ.Hospital" />
@@ -119,7 +124,9 @@
       <workItem from="1587382355282" duration="24397000" />
       <workItem from="1587493315860" duration="32000" />
       <workItem from="1587501907577" duration="10960000" />
-      <workItem from="1587541752588" duration="1204000" />
+      <workItem from="1587541752588" duration="1503000" />
+      <workItem from="1587597583137" duration="5079000" />
+      <workItem from="1587654381642" duration="8895000" />
     </task>
     <servers />
   </component>
@@ -139,10 +146,18 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="456" y="171" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1587504785405" />
-    <state x="488" y="78" width="461" height="649" key="#com.intellij.ide.util.MemberChooser" timestamp="1587395558209">
+    <state x="488" y="78" width="461" height="649" key="#com.intellij.ide.util.MemberChooser" timestamp="1587656337920">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="488" y="78" width="461" height="649" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1587395558209" />
+    <state x="488" y="78" width="461" height="649" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1587656337920" />
+    <state x="413" y="148" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1587663640809">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="148" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1587663640809" />
+    <state x="479" y="253" width="407" height="238" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1587663642237">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="479" y="253" width="407" height="238" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.738@0.0.1366.738" timestamp="1587663642237" />
     <state x="406" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1585657720345">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -155,22 +170,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="441" y="239" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1585669442564" />
-    <state width="1323" height="141" key="GridCell.Tab.0.bottom" timestamp="1587542738191">
+    <state width="1323" height="76" key="GridCell.Tab.0.bottom" timestamp="1587663718980">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="141" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587542738191" />
-    <state width="1323" height="141" key="GridCell.Tab.0.center" timestamp="1587542738191">
+    <state width="1323" height="76" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1587663718980" />
+    <state width="1323" height="76" key="GridCell.Tab.0.center" timestamp="1587663718980">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="141" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1587542738191" />
-    <state width="1323" height="141" key="GridCell.Tab.0.left" timestamp="1587542738191">
+    <state width="1323" height="76" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1587663718980" />
+    <state width="1323" height="76" key="GridCell.Tab.0.left" timestamp="1587663718980">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="141" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1587542738191" />
-    <state width="1323" height="141" key="GridCell.Tab.0.right" timestamp="1587542738191">
+    <state width="1323" height="76" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1587663718980" />
+    <state width="1323" height="76" key="GridCell.Tab.0.right" timestamp="1587663718980">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="141" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1587542738191" />
+    <state width="1323" height="76" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1587663718980" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1586986562602">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -187,10 +202,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1586986562602" />
-    <state x="378" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1587541764338">
+    <state x="378" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1587655394805">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="378" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1587541764338" />
+    <state x="378" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1587655394805" />
+    <state x="722" y="131" key="extract.method.dialog" timestamp="1587659495344">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="722" y="131" key="extract.method.dialog/0.0.1366.738@0.0.1366.738" timestamp="1587659495344" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1587405827661">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

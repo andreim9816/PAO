@@ -1,11 +1,10 @@
 package Model.administrativ;
 
-import Model.Utils.Printable;
-
+import Model.Utils.WriteFile;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-public class Hospital implements Printable
+public class Hospital implements WriteFile<Hospital>
 {
     private String name;
     private int idHospital = 0;

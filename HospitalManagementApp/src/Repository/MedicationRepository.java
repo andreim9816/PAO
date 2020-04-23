@@ -1,5 +1,5 @@
 package Repository;
-import ComparatorMedication.ComparatorMedication;
+import Comparator.ComparatorMedication;
 import Model.tratament.Medication;
 import java.util.Set;
 import java.util.TreeSet;

@@ -1,11 +1,11 @@
 package Service;
 
-import Model.administrativ.Department;
-import Model.administrativ.Hospital;
 import Model.tratament.Prescription;
 
 import java.io.*;
 import java.util.ArrayList;
+
+// TO BE DELETED
 
 public class PrescriptionCsvService
 {

@@ -1,4 +1,4 @@
-package Service;
+package Model.Utils;
 
 public interface CsvService
 {

@@ -1,13 +1,15 @@
 package Service;
 
+import Model.Utils.CsvService;
 import Model.personal.Doctor;
 import Model.personal.Nurse;
 import Model.personal.Patient;
 import Model.personal.Person;
 
-import javax.print.Doc;
 import java.io.*;
 import java.util.ArrayList;
+
+// TO BE DELETED
 
 public class PersonCsvService implements CsvService
 {
@@ -54,7 +56,6 @@ public class PersonCsvService implements CsvService
 
                     String[] fields = line.split(",");
                     Person person;
-                    System.out.println(fields[0]);
                     if(fields.length == 5) // nurse
                         person = new Nurse(fields[1], fields[2], fields[0]);
                     else

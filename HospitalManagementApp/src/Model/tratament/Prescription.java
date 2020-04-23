@@ -1,11 +1,11 @@
 package Model.tratament;
 
-import Model.Utils.Printable;
+import Model.Utils.WriteFile;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-public class Prescription implements Printable
+public class Prescription implements WriteFile<Prescription>
 {
     private String CNPPatient;
     private String CNPDoctor;

@@ -1,31 +1,21 @@
 package Main;
 
+import Model.Utils.DepartmentReader;
+import Model.Utils.HospitalReader;
+import Model.Utils.PersonReader;
+import Model.Utils.PrescriptionReader;
 import Service.*;
 import Model.tratament.*;
 import Model.personal.*;
 import Model.administrativ.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Set;
-
 public class Main
 {
-    // Services
-    public static HospitalService hospitalService = HospitalService.getInstance();
-    public static DepartmentService departmentService = DepartmentService.getInstance();
-    public static PersonService personService = PersonService.getInstance();
-    public static MedicationService medicationService = MedicationService.getInstance();
-    public static PrescriptionService prescriptionService = PrescriptionService.getInstance();
-    public static AddressService addressService = AddressService.getInstance();
-
     // Non-generic services for handling read/write files
-    public static AuditService auditService = AuditService.getInstance();
-    public static HospitalCsvService hospitalCsvService = HospitalCsvService.getInstance();
-    public static DepartmentCsvService departmentCsvService = DepartmentCsvService.getInstance();
-    public static PersonCsvService personCsvService = PersonCsvService.getInstance();
-    public static PrescriptionCsvService prescriptionCsvService = PrescriptionCsvService.getInstance();
+//    public static HospitalCsvService hospitalCsvService = HospitalCsvService.getInstance();
+//    public static DepartmentCsvService departmentCsvService = DepartmentCsvService.getInstance();
+//    public static PersonCsvService personCsvService = PersonCsvService.getInstance();
+//    public static PrescriptionCsvService prescriptionCsvService = PrescriptionCsvService.getInstance();
 
     // Generic services for file writing
 //    public static WriteFileService<Hospital> writeFileServiceHospital = WriteFileService.getInstance();
@@ -33,22 +23,40 @@ public class Main
 //    public static WriteFileService<Prescription> writeFileServicePrescription = WriteFileService.getInstance();
 //    public static WriteFileService<Person> writeFileServicePerson = WriteFileService.getInstance();
 
+    // Services for object handling
+    public static HospitalService hospitalService = HospitalService.getInstance();
+    public static DepartmentService departmentService = DepartmentService.getInstance();
+    public static PersonService personService = PersonService.getInstance();
+    public static MedicationService medicationService = MedicationService.getInstance();
+    public static PrescriptionService prescriptionService = PrescriptionService.getInstance();
+    public static AddressService addressService = AddressService.getInstance();
+
+    // Audit service
+    public static AuditService auditService = AuditService.getInstance();
+
+    // Services for Reading and Writing .csv files
     public static WriteFileService writeFileService = WriteFileService.getInstance();
+    public static ReadFileService readFileService = ReadFileService.getInstance();
 
     public static void main(String[] args)
     {
-            // reads data from .csv files
-            hospitalCsvService.setFileName("hospital.csv");
-            hospitalCsvService.readFile();
+//            hospitalCsvService.setFileName("hospital.csv");
+//            hospitalCsvService.readFile();
+//
+//            departmentCsvService.setFileName("department.csv");
+//            departmentCsvService.readFile();
+//
+//            personCsvService.setFileName("person.csv");
+//            personCsvService.readFile();
+//
+//            prescriptionCsvService.setFileName("prescription.csv");
+//            prescriptionCsvService.readFile();
 
-            departmentCsvService.setFileName("department.csv");
-            departmentCsvService.readFile();
-
-            personCsvService.setFileName("person.csv");
-            personCsvService.readFile();
-
-            prescriptionCsvService.setFileName("prescription.csv");
-            prescriptionCsvService.readFile();
+            // reads data from .csv
+            readFileService.readFile(HospitalReader.getInstance(), "hospital.csv");
+            readFileService.readFile(DepartmentReader.getInstance(), "department.csv");
+            readFileService.readFile(PersonReader.getInstance(), "person.csv");
+            readFileService.readFile(PrescriptionReader.getInstance(), "prescription.csv");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

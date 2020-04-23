@@ -1,4 +1,4 @@
-package ComparatorMedication;
+package Comparator;
 import Model.tratament.Medication;
 import java.util.Comparator;
 

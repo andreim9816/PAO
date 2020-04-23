@@ -1,11 +1,11 @@
 package Model.administrativ;
 
-import Model.Utils.Printable;
+import Model.Utils.WriteFile;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-public class Department implements Printable
+public class Department implements WriteFile<Department>
 {
     private String nameDepartment;
     private int noOfBeds;

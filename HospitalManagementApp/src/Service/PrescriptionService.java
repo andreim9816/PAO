@@ -1,6 +1,6 @@
 package Service;
 
-import ComparatorMedication.ComparatorMedication;
+import Comparator.ComparatorMedication;
 import Main.Main;
 import Model.personal.Person;
 import Model.tratament.Medication;
@@ -140,7 +140,7 @@ public class PrescriptionService
                Main.medicationService.remove(m.getIdPrescription(), m.getNameMedication());
 
             prescriptionRepository.removeById(idPrescription);
-            Main.writeFileService.updateFile(getPrescriptionAll(), "pescription.csv");
+            Main.writeFileService.updateFile(getPrescriptionAll(), "prescription.csv");
 //            Main.writeFileServicePrescription.updateFile(getPrescriptionAll(), "prescription.csv");
 //            PrescriptionCsvService.getInstance().updateFile();
         }
