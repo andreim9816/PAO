@@ -1,0 +1,26 @@
+main, Get all Hospitals,2020-06-03 23:23:06.927
+main, Get all departments,2020-06-03 23:23:06.963
+main, Get all persons,2020-06-03 23:23:06.966
+main, Get all prescriptions,2020-06-03 23:23:06.968
+AWT-EventQueue-0, Get an Hospital by ID,2020-06-03 23:23:13.142
+AWT-EventQueue-0, Remove an Hospital,2020-06-03 23:23:18.382
+AWT-EventQueue-0, Get all Hospitals,2020-06-03 23:23:19.127
+AWT-EventQueue-0, Get all prescriptions,2020-06-03 23:23:19.129
+AWT-EventQueue-0, Get all persons,2020-06-03 23:23:19.131
+AWT-EventQueue-0, Get all departments,2020-06-03 23:23:19.133
+AWT-EventQueue-0, Remove an Hospital,2020-06-03 23:23:22.494
+AWT-EventQueue-0, Get all Nurses From Department,2020-06-03 23:23:39.578
+AWT-EventQueue-0, Get all Doctors From Department,2020-06-03 23:23:39.958
+AWT-EventQueue-0, Get all Patients From Department,2020-06-03 23:23:40.435
+main, Get all Hospitals,2020-06-03 23:23:54.152
+main, Get all departments,2020-06-03 23:23:54.184
+main, Get all persons,2020-06-03 23:23:54.186
+main, Get all prescriptions,2020-06-03 23:23:54.189
+Thread-2, Add hospital,2020-06-03 23:24:07.284
+AWT-EventQueue-0, Get all Hospitals,2020-06-03 23:24:07.29
+AWT-EventQueue-0, Get an Hospital by ID,2020-06-03 23:24:31.986
+Thread-3, ChangeHospitalName,2020-06-03 23:24:31.989
+AWT-EventQueue-0, Get all Hospitals,2020-06-03 23:24:31.996
+AWT-EventQueue-0, Get an Hospital by ID,2020-06-03 23:24:36.748
+Thread-4, ChangeHospitalName,2020-06-03 23:24:36.752
+AWT-EventQueue-0, Get all Hospitals,2020-06-03 23:24:36.758
